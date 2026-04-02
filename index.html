@@ -31,6 +31,7 @@
 
   <!-- HERO -->
   <section id="hero">
+    <canvas id="hero-particles"></canvas>
     <div class="hero-bg-grid"></div>
     <div class="hero-content">
       <div class="hero-tag">
@@ -38,9 +39,12 @@
       </div>
       <h1 class="hero-title">
         Hi, I'm<br />
-        <span class="gradient-text">Milind</span><br />
-        <span class="hero-sub">Chauhan</span>
+        <span id="typed-name"></span><span class="typing-cursor">|</span>
       </h1>
+      <div class="typed-roles-wrapper">
+        <span class="typed-roles-prefix">I'm a</span>
+        <span id="typed-role" class="typed-role"></span><span class="typing-cursor role-cursor">|</span>
+      </div>
       <p class="hero-desc">Software Engineer (AI/ML) building end-to-end intelligent systems — from protein language
         models to production-grade MLOps on AWS.</p>
       <div class="hero-btns">
@@ -71,11 +75,13 @@
     <div class="hero-visual">
       <div class="avatar-ring">
         <div class="avatar-placeholder">
-          <span>MC</span>
+          <img src="assets/profile.JPG" alt="Milind Chauhan"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <span class="avatar-fallback" style="display:none;">MC</span>
         </div>
       </div>
       <div class="floating-badge badge-1">PyTorch</div>
-      <div class="floating-badge badge-2">AWS EKS</div>
+      <div class="floating-badge badge-2">Agentic AI</div>
       <div class="floating-badge badge-3">LLM Fine-tuning</div>
       <div class="floating-badge badge-4">MLflow</div>
     </div>
@@ -101,20 +107,24 @@
         </div>
         <div class="about-stats">
           <div class="stat-card">
+            <div class="stat-icon">🎓</div>
             <div class="stat-number">9.12</div>
             <div class="stat-label">CGPA at IIIT-Delhi</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">5+</div>
-            <div class="stat-label">Microservices Deployed</div>
+            <div class="stat-icon">🧠</div>
+            <div class="stat-number">4+</div>
+            <div class="stat-label">ML Projects Built</div>
           </div>
           <div class="stat-card">
+            <div class="stat-icon">📄</div>
             <div class="stat-number">2</div>
             <div class="stat-label">Research Publications</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">40%</div>
-            <div class="stat-label">Pipeline Speedup</div>
+            <div class="stat-icon">☁️</div>
+            <div class="stat-number">8+</div>
+            <div class="stat-label">AWS Services Used</div>
           </div>
         </div>
       </div>
@@ -131,8 +141,13 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card">
-            <div class="timeline-date">Jan 2025 – Present</div>
-            <h3>Software Engineer – AI/ML <span class="org">@ Microcrispr Pvt. Ltd.</span></h3>
+            <div class="timeline-card-header">
+              <img src="assets/microcrispr.png" alt="Microcrispr" class="timeline-logo" />
+              <div>
+                <div class="timeline-date">Jan 2025 – Present</div>
+                <h3>Software Engineer – AI/ML <span class="org">@ Microcrispr Pvt. Ltd.</span></h3>
+              </div>
+            </div>
             <p>Designed scalable AWS Glue pipelines processing 10⁴–10⁵ records/run. Built serverless Lambda
               microservices cutting pipeline turnaround by ~40–50%. Developing a full-stack drug discovery platform on
               AWS EKS with 5+ containerized services, a Neo4j knowledge graph visualizer (1.1M nodes / 6M edges), and a
@@ -147,8 +162,13 @@
         <div class="timeline-item">
           <div class="timeline-dot edu"></div>
           <div class="timeline-card">
-            <div class="timeline-date">2023 – 2025</div>
-            <h3>M.Tech – Computational Biology <span class="org">@ IIIT-Delhi</span></h3>
+            <div class="timeline-card-header">
+              <img src="assets/IIITD.png" alt="IIIT-Delhi" class="timeline-logo" />
+              <div>
+                <div class="timeline-date">2023 – 2025</div>
+                <h3>M.Tech – Computational Biology <span class="org">@ IIIT-Delhi</span></h3>
+              </div>
+            </div>
             <p>CGPA: 9.12. Specialized in sequence modelling, protein language models, and ML applications in
               computational biology. Published research on anticancer protein prediction using ESM2 fine-tuning.</p>
             <div class="timeline-tags">
@@ -160,8 +180,13 @@
         <div class="timeline-item">
           <div class="timeline-dot edu"></div>
           <div class="timeline-card">
-            <div class="timeline-date">2021 – 2023</div>
-            <h3>M.Sc. – Bioinformatics <span class="org">@ Bioinformatics Centre, SPPU</span></h3>
+            <div class="timeline-card-header">
+              <img src="assets/sppu.png" alt="SPPU" class="timeline-logo" />
+              <div>
+                <div class="timeline-date">2021 – 2023</div>
+                <h3>M.Sc. – Bioinformatics <span class="org">@ Bioinformatics Centre, SPPU</span></h3>
+              </div>
+            </div>
             <p>CGPA: 8.85. Built strong foundations in computational methods, statistics, and bioinformatics tooling,
               bridging biology and software engineering.</p>
             <div class="timeline-tags">
@@ -329,9 +354,6 @@
           <div class="project-badge">Featured</div>
           <div class="project-header">
             <h3>AI-Assisted MD Analysis Workbench</h3>
-            <div class="project-links">
-              <a href="https://github.com/knowmili" target="_blank">GitHub ↗</a>
-            </div>
           </div>
           <p>End-to-end molecular dynamics analysis platform that converts raw simulation trajectories into reproducible
             analyses, publication-quality visualizations, and interpretable scientific summaries. Integrated a local RAG
@@ -339,28 +361,28 @@
           <div class="project-tags">
             <span>Python</span><span>RAG</span><span>VectorDB</span><span>Local-LLM</span><span>ElectronJS</span>
           </div>
+          <div class="project-footer-links">
+            <a href="https://github.com/knowmili" target="_blank" class="project-link-btn">Coming Soon ↗</a>
+          </div>
         </div>
 
         <div class="project-card">
           <div class="project-header">
             <h3>AntiCP3</h3>
-            <div class="project-links">
-              <a href="https://github.com/knowmili" target="_blank">GitHub ↗</a>
-            </div>
           </div>
           <p>Novel computational framework for anticancer protein prediction by fine-tuning ESM2, a state-of-the-art
             protein language model. Deployed as HuggingFace model, pip package, standalone CLI, and web interface.</p>
           <div class="project-tags">
             <span>TensorFlow</span><span>Transformers</span><span>ESM2</span><span>HuggingFace</span><span>Scikit-learn</span>
           </div>
+          <div class="project-footer-links">
+            <a href="https://webs.iiitd.edu.in/raghava/anticp3/" target="_blank" class="project-link-btn">Web App ↗</a>
+          </div>
         </div>
 
         <div class="project-card">
           <div class="project-header">
             <h3>Drug Discovery Platform</h3>
-            <div class="project-links">
-              <a href="https://github.com/knowmili" target="_blank">GitHub ↗</a>
-            </div>
           </div>
           <p>Full-stack drug prioritization platform with 5+ containerized microservices on AWS EKS. Features a
             high-performance knowledge graph visualizer for 1.1M nodes and 6M edges backed by Neo4j with interactive
@@ -368,20 +390,37 @@
           <div class="project-tags">
             <span>AWS EKS</span><span>Neo4j</span><span>Kafka</span><span>Docker</span><span>FastAPI</span>
           </div>
+          <div class="project-footer-links">
+            <a href="https://github.com/knowmili/nubio" target="_blank" class="project-link-btn">GitHub ↗</a>
+          </div>
         </div>
 
         <div class="project-card">
           <div class="project-header">
             <h3>Histopathology Super-Resolution</h3>
-            <div class="project-links">
-              <a href="https://github.com/knowmili" target="_blank">GitHub ↗</a>
-            </div>
           </div>
           <p>U-Net-based super-resolution pipeline reconstructing high-resolution histopathology images from
             low-resolution inputs. Achieved a validation PSNR of 34.94 on held-out samples with full experiment
             tracking.</p>
           <div class="project-tags">
             <span>PyTorch</span><span>U-Net</span><span>MLflow</span><span>W&B</span><span>Computer Vision</span>
+          </div>
+          <div class="project-footer-links">
+            <a href="https://github.com/knowmili/HERestore" target="_blank" class="project-link-btn">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>CancerPPD2</h3>
+          </div>
+          <p>Novel computational framework for anticancer protein prediction by fine-tuning ESM2, a state-of-the-art
+            protein language model. Deployed as HuggingFace model, pip package, standalone CLI, and web interface.</p>
+          <div class="project-tags">
+            <span>TensorFlow</span><span>Transformers</span><span>ESM2</span><span>HuggingFace</span><span>Scikit-learn</span>
+          </div>
+          <div class="project-footer-links">
+            <a href="https://webs.iiitd.edu.in/raghava/anticp3/" target="_blank" class="project-link-btn">Web App ↗</a>
           </div>
         </div>
 
@@ -453,24 +492,25 @@
             <a href="https://linkedin.com/in/milind-chauhan" target="_blank" class="social-btn">LinkedIn</a>
           </div>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xzdkajjg" method="POST">
+          <input type="hidden" name="_subject" value="New message from portfolio" />
           <div class="form-row">
             <div class="form-group">
               <label>First Name *</label>
-              <input type="text" placeholder="John" required />
+              <input type="text" name="first_name" placeholder="John" required />
             </div>
             <div class="form-group">
               <label>Last Name *</label>
-              <input type="text" placeholder="Doe" required />
+              <input type="text" name="last_name" placeholder="Doe" required />
             </div>
           </div>
           <div class="form-group">
             <label>Email *</label>
-            <input type="email" placeholder="john@example.com" required />
+            <input type="email" name="email" placeholder="john@example.com" required />
           </div>
           <div class="form-group">
             <label>Subject *</label>
-            <select required>
+            <select name="subject" required>
               <option value="">Select a subject</option>
               <option>Job Opportunity</option>
               <option>Research Collaboration</option>
@@ -480,9 +520,13 @@
           </div>
           <div class="form-group">
             <label>Message *</label>
-            <textarea rows="5" placeholder="Your message here..." required></textarea>
+            <textarea rows="5" name="message" placeholder="Your message here..." required></textarea>
           </div>
-          <button type="submit" class="btn-primary submit-btn">Send Message →</button>
+          <button type="submit" class="btn-primary submit-btn" id="submit-btn">
+            <span class="btn-text">Send Message →</span>
+            <span class="btn-loading" style="display:none;">Sending...</span>
+          </button>
+          <div class="form-status" id="form-status"></div>
         </form>
       </div>
     </div>
