@@ -44,6 +44,11 @@ hamburger.addEventListener('click', () => {
       nameEl.textContent = name.substring(0, i);
       setTimeout(() => typeName(i + 1), 120);
     } else {
+      // Hide name cursor after typing completes
+      const nameCursor = document.querySelector('.hero-title .typing-cursor');
+      if (nameCursor) {
+        nameCursor.style.display = 'none';
+      }
       // After name is typed, start role cycling
       setTimeout(() => typeRole(roles[roleIndex], 0), 600);
     }
@@ -171,7 +176,7 @@ hamburger.addEventListener('click', () => {
 // Scroll animation
 // ================================
 const fadeEls = document.querySelectorAll(
-  'section, .timeline-item, .skill-group, .project-card, .pub-card, .stat-card, .gh-stat-card'
+  'section, .timeline-item, .skill-group, .project-card, .pub-card, .stat-card, .gh-stat-card, .cert-card'
 );
 fadeEls.forEach(el => el.classList.add('fade-in'));
 
